@@ -1,6 +1,17 @@
 <title>支付宝页面</title>
 <link rel="stylesheet" href="./style.css">
-<h5>您的账户余额是 <span id="amount"> &&&amount&&& </span> </h5>  <!--&&&amount&&&只是占位符-->
-<form action="/pay" method="post">
-  <input type="submit" value="付款">
-</form> 
+<h5>您的账户余额是 <span id="amount"> &&&amount&&& </span> </h5> <!--&&&amount&&&是占位符-->
+<button id=button>打钱</button>
+<script>
+  button.addEventListener('click',(e)=>{
+    let script = document.createElement('script')
+    script.src = './pay'
+    document.body.appendChild(script)
+    script.onload = function(e){
+      e.currentTarget.remove() //从页面中移除这个标签，但是它还存在在内存中
+    }
+    script.onerror = function(e){
+      e.currentTarget.remove()
+    }
+  })
+</script>
