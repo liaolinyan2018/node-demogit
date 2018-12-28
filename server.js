@@ -23,7 +23,7 @@ var server = http.createServer(function(request, response){
   if(path === '/'){
     var string = fs.readFileSync('./index.html','utf8')
     var amount = fs.readFileSync('./db','utf8')//100
-    string = string.replace('&&&amount&&&',amount) //用amount内容代替&&&amount&&&
+    string = string.replace('&&&amount&&&',amount) //用数据库里的amount 代替 &&&amount&&&
     response.setHeader('Content-Type','text/html')
     response.write(string)
     response.end()
@@ -37,9 +37,9 @@ var server = http.createServer(function(request, response){
     response.setHeader('Content-Type', 'application/javascript')
     response.write(string)
     response.end()
-  }else if(path === '/pay' && method.toUpperCase() === 'POST'){
+  }else if(path === '/pay' && method.toUpperCase() === 'POST'){ //如果用户访问了/pay这个路径
     var amount = fs.readFileSync('./db','utf8') //100
-    var newAmount = amount - 1
+    var newAmount = amount - 1   //数据库里的amount - 1
     fs.writeFileSync('./db',newAmount);
     response.write('success')
     response.end()
