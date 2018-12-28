@@ -18,7 +18,7 @@ var server = http.createServer(function(request, response){
   var method = request.method
 
   /******** 从这里开始看，上面不要看 ************/
-
+  /*因为需要手动刷新，用户体验不好*/ 
   console.log('HTTP 路径为\n' + path)
   if(path === '/'){
     var string = fs.readFileSync('./index.html','utf8')
